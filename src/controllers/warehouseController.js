@@ -24,7 +24,8 @@ exports.insert = async (req, res) => {
           name: item.name || '',       // Ensure each field is present, use default values if necessary
           value: item.value || 0,
           quantity: item.quantity || 0,
-          category: item.category || ''
+          category: item.category || '',
+          qToPay:item.qToPay || 1
         }));
   
         // Convert the items to JSON
@@ -75,12 +76,13 @@ exports.insert = async (req, res) => {
   
           // Check if parsedJson is an array and has at least one item
           if (Array.isArray(parsedJson) && parsedJson.length > 0) {
-            return parsedJson.map(({ id, name, value, quantity, category }) => ({
+            return parsedJson.map(({ id, name, value, quantity, category,qToPay }) => ({
               id,
               name: name || '',
               value: value || 0,
               quantity: quantity || 0,
               category: category || '',
+              qToPay:qToPay || 1
             }));
           } else {
             console.error('Invalid or empty parsedJson:', parsedJson);

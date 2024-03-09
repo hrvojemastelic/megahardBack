@@ -4,9 +4,9 @@ const mysql = require('mysql2');
 
 const pool = mysql.createPool({
   host: '127.0.0.1',
-  user: 'linuxlite',
+  user: 'admin',
   password: '0000',
-  database: 'megahard_DB',
+  database: 'megahard_db',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 1000
