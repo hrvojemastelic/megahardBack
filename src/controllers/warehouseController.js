@@ -24,7 +24,7 @@ exports.insert = async (req, res) => {
           name: item.name || '',       // Ensure each field is present, use default values if necessary
           value: item.value || 0,
           quantity: item.quantity || 0,
-          category: item.category || '',
+          category: item.category || 0,
           qToPay:item.qToPay || 1
         }));
   
