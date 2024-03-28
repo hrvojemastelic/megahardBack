@@ -4,7 +4,6 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const generateToken = require('../middleware/generateToken'); // Import the token generation function
 
-
 exports.login = async (req, res) => {
   const { username, password } = req.body;
 
@@ -23,7 +22,8 @@ exports.login = async (req, res) => {
 
       if (isPasswordValid) {
           const token = generateToken(results[0].id); // Generate token using user ID
-          res.json({ success: true, user, token }); // Send token along with user data
+          const { id, username } = results[0]; // Destructure username from the results
+          res.json({ success: true, user: { id, username }, token }); // Send token along with user data including username
       } else {
           res.status(401).json({ success: false, message: 'Invalid credentials' });
       }
@@ -52,9 +52,10 @@ exports.register = async (req, res) => {
     const [result] = await db.query('INSERT INTO users (username, email, password, createdAt, updatedAt) VALUES (?, ?, ?, NOW(), NOW())', [username, email, hashedPassword]);
 
     const newUser = new User(result.insertId);
-    res.json({ success: true, user: newUser });
+    res.json({ success: true, user: { id: result.insertId, username }, token }); // Include username in the response
   } catch (error) {
     console.error('Database Query Error:', error);
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 };
+
