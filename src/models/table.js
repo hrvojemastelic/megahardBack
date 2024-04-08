@@ -1,5 +1,5 @@
 class Table {
-    constructor(id,name,toPay,quantity,category,items,x,y) {
+    constructor(id,name,toPay,quantity,category,items,x,y,tabId) {
         this.id = id;
         this.name = name;
         this.toPay = toPay;
@@ -8,6 +8,7 @@ class Table {
         this.items = items;
         this.x = x;
         this.y = y;
+        this.tabId = tabId
       }
   }
 

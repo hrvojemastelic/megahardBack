@@ -66,7 +66,7 @@ exports.insert = async (req, res) => {
   
       try {
         const [rows] = await connection.query('SELECT items_json FROM warehouse WHERE userId = ?', [userId]);
-  
+   
         if (rows.length === 0) {
           return res.status(200).json({ success: true, message: 'List is empty' });
         }
