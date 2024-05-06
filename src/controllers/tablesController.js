@@ -32,7 +32,7 @@ exports.insert = async (req, res) => {
           toPay: table.toPay || 0,
           quantity: table.quantity || 0,
           category: table.category || 0,
-          items: [],
+          items: table.items || [],
           x:table.x || 0,
           y:table.y || 0,
           tabId: table.tabId || 0 
